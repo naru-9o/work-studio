@@ -1,30 +1,74 @@
 function loading() {
-    var tl = gsap.timeline()
+    var tl = gsap.timeline();
 
-tl.to("#yellow",{
-    top: "-100%",
-    delay: 0.5,
-    duration: 0.6,
-    ease: "expo.out"
-})
-tl.from("#yellow2",{
-    top: "100%",
-    delay: 0.5,
-    duration: 0.6,
-    ease: "expo.out"
-},"anim")
+    tl.to("#yellow", {
+        top: "-100%",
+        delay: 0.5,
+        duration: 0.6,
+        ease: "expo.out"
+    });
 
-tl.to("#loader h1",{
-    delay: 0.6,
-    duration: 0.6,
-    color: "black"
-},"anim")
+    tl.from("#yellow2", {
+        top: "100%",
+        delay: 0.5,
+        duration: 0.6,
+        ease: "expo.out"
+    }, "anim");
 
-tl.to("#loader",{
-    display: "none"
-})
+    tl.to("#loader h1", {
+        delay: 0.6,
+        duration: 0.6,
+        color: "black"
+    }, "anim");
+
+    tl.to("#loader", {
+        opacity: 0,
+        duration: 0.5,
+        onComplete: function () {
+            document.querySelector("#loader").style.display = "none";
+        }
+    });
+
+    applyResponsiveAnimations();
 }
+
+function applyResponsiveAnimations() {
+    let screenWidth = window.innerWidth;
+
+    if (screenWidth <= 768) {
+        let navbarHeight = document.querySelector("#nav").offsetHeight; // Get navbar height dynamically
+
+        let t1 = gsap.timeline();
+
+        t1.to("#page1", {
+            height: "24vh",
+            paddingTop: navbarHeight + "px", // Set `top` dynamically based on navbar height
+            backgroundColor: "white",
+            delay: 2.5,
+            duration: 0.3,
+            ease: "power2.out"
+        });
+    }
+
+    if (screenWidth <= 1024) {
+        let navbarHeight = document.querySelector("#nav").offsetHeight; // Get navbar height dynamically
+
+        let t1 = gsap.timeline();
+
+        t1.to("#page1", {
+            height: "30vh",
+            paddingTop: navbarHeight + "px", // Set `top` dynamically based on navbar height
+            backgroundColor: "white",
+            delay: 2.5,
+            duration: 0.3,
+            ease: "power2.out"
+        });
+    }
+}
+
+// Call loading function
 loading();
+
 
 const scroll = new LocomotiveScroll({
     el: document.querySelector('#main'),
@@ -77,17 +121,17 @@ function fixing() {
   const screenWidth = window.innerWidth;
 
   // Determine scale factor based on screen size
-  let scaleFactor;
-  if (screenWidth <= 480) {
-      // Mobile screens (adjust to smaller sizes)
-      scaleFactor = 0.74;
-  } else if (screenWidth <= 1024) {
-      // Tablets
-      scaleFactor = 2;
-  } else {
-      // Default for larger screens
-      scaleFactor = 1;
-  }
+    let scaleFactor;
+    if (screenWidth <= 390) {
+        scaleFactor = 0.7; // Very small screens
+    } else if (screenWidth <= 480) {
+        scaleFactor = 0.74; // Mobile screens
+    } else if (screenWidth <= 1024) {
+        scaleFactor = 1.9; // Tablets
+    } else {
+        scaleFactor = 1; // Larger screens
+    }
+
 
   // Loop through each line1 div
   lineDivs.forEach((line, lineIndex) => {

@@ -68,6 +68,7 @@ html, body {
     z-index: 7;
 }
 
+
 #nav {
     position: absolute;
     width: 100%;
@@ -100,12 +101,14 @@ html, body {
 
 @media (max-width: 767px){
 
-    #loader {
-        height: 50vh;
+    #loader h1 {
+        line-height: 6vw;
+        letter-spacing: 1px;
     }
 
-    #page1 {
-        height: 50vh;
+    #page1>h1 {
+        line-height: 6vw;
+        letter-spacing: 1px;
     }
 }
 
@@ -303,7 +306,7 @@ html, body {
 @media (max-width: 1024px) {
     #page3 {
         height: fit-content;
-        padding: 15px;
+        padding: 35px;
     }
 
     .overlay>p {
